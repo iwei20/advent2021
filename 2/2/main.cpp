@@ -10,8 +10,19 @@ int main() {
     cout.tie(nullptr);
 
     ifstream fin("../input.in");
-    string s;
-    fin >> s;
-    cout << s;
-    cout << smanip::slice("Hello", -2, nullopt, -2) << "\n";
+    string d;
+    int horiz = 0;
+    int height = 0;
+    int aim = 0;
+    while (fin >> d) {
+        int n;
+        fin >> n;
+        if (d == "forward") {
+            horiz += n;
+            height += aim * n;
+        }
+        if (d == "up") aim -= n;
+        if (d == "down") aim += n;
+    }
+    cout << height * horiz << "\n";
 }
