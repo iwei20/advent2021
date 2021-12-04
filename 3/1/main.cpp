@@ -10,8 +10,27 @@ int main() {
     cout.tie(nullptr);
 
     ifstream fin("../input.in");
-    string s;
-    fin >> s;
-    cout << s;
-    cout << smanip::slice("Hello", -2, nullopt, -2) << "\n";
+    vector<string> things;
+    fin >> things;
+
+    vector<int> count(things[0].size());
+    for (string line : things) {
+        for (int i = 0; i < line.size(); ++i) {
+            count[i] += (line[i] == '1');
+        }
+    }
+
+    cout << count << "\n";
+    ll gamma = 0, eps = 0;
+    for (int i = 0; i < count.size(); ++i) {
+        if (count[i] > things.size() - count[i]) {
+            ++gamma;
+        } else {
+            ++eps;
+        }
+        gamma *= 2;
+        eps *= 2;
+    }
+
+    cout << gamma * eps / 4 << "\n";
 }
