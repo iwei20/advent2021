@@ -12,6 +12,21 @@ int main() {
     ifstream fin("../input.in");
     string s;
     fin >> s;
-    cout << s;
-    cout << smanip::slice("Hello", -2, nullopt, -2) << "\n";
+    replace(s.begin(), s.end(), ',', ' ');
+
+    stringstream ss(s);
+    vector<int> fish;
+    ss >> fish;
+
+    for (int i = 0; i < 80; ++i) {
+        for (int j = 0; j < fish.size(); ++j) {
+            if (fish[j] == 0) {
+                fish.push_back(9);
+                fish[j] = 6;
+            } else {
+                --fish[j];
+            }
+        }
+    }
+    cout << fish.size();
 }
