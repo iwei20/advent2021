@@ -12,6 +12,23 @@ int main() {
     ifstream fin("../input.in");
     string s;
     fin >> s;
-    cout << s;
-    cout << smanip::slice("Hello", -2, nullopt, -2) << "\n";
+    replace(s.begin(), s.end(), ',', ' ');
+
+    stringstream ss(s);
+    vector<int> crabs;
+    ss >> crabs;
+
+    int sum = 0;
+    for (int c : crabs) {
+        sum += c;
+    }
+
+    sort(crabs.begin(), crabs.end());
+    int median = crabs[crabs.size() / 2];
+    int sum_diffs = 0;
+    for (int c : crabs) {
+        sum_diffs += abs(c - median);
+    }
+    cout << median << "\n";
+    cout << sum_diffs << "\n";
 }

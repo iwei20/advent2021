@@ -12,6 +12,25 @@ int main() {
     ifstream fin("../input.in");
     string s;
     fin >> s;
-    cout << s;
-    cout << smanip::slice("Hello", -2, nullopt, -2) << "\n";
+    replace(s.begin(), s.end(), ',', ' ');
+
+    stringstream ss(s);
+    vector<int> crabs;
+    ss >> crabs;
+
+    //sort(crabs.begin(), crabs.end());
+
+    long long min_res = LLONG_MAX;
+    
+    for (int i = 0; i < 5000; ++i) {
+        long long sum_diffs = 0;
+        for (int c : crabs) {
+            long long n = abs(c - i);
+            sum_diffs += n * (n + 1) / 2;
+            //cout << n * (n + 1) / 2 << "\n";
+        }
+        min_res = min(min_res, sum_diffs);
+        //cout << "\n";
+    }
+    cout << min_res << "\n";
 }
