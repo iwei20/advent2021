@@ -1,0 +1,1 @@
+print((-int(open("../input.in", "r+").readlines()[0].rstrip().split()[-1][2:].split("..")[0]) - 1) * (-int(open("../input.in", "r+").readlines()[0].rstrip().split()[-1][2:].split("..")[0])) / 2)
