@@ -1,1 +1,265 @@
-HI
+inp w
+mul x 0 # does nothing
+add x z # does nothing
+mod x 26 # does nothing
+div z 1 # does nothing
+add x 15 # x = 15
+eql x w # x = 1 if w = 15; x = 0 always 
+eql x 0 # x = 1
+mul y 0 # does nothing
+add y 25 # y = 25
+mul y x # y = 25
+add y 1 # y = 26
+mul z y # does nothing
+mul y 0 # y = 0
+add y w # y = w
+add y 4 # y = w + 4
+mul y x # y = w + 4
+add z y # z = w + 4
+
+inp w
+mul x 0 # x = 0
+add x z # x = w1 + 4
+mod x 26 # x = w1 + 4 always
+div z 1 # z = w1 + 4
+add x 14 # x = w1 + 18
+eql x w # x = 0    
+eql x 0 # x = 1
+mul y 0 # y = 0
+add y 25 # y = 25
+mul y x # y = 25
+add y 1 # y = 26
+mul z y # z = 26 * (w1 + 4)
+mul y 0 # y = 0
+add y w # y = w2
+add y 16 # y = (w2 + 16)
+mul y x # y = (w2 + 16)
+add z y # z = 26 * (w1 + 4) + (w2 + 16)
+
+inp w
+mul x 0 # x = 0
+add x z #  V
+mod x 26 # x = w2 + 16
+div z 1 # nothing
+add x 11 # x = w2 + 27
+eql x w # 
+eql x 0
+mul y 0
+add y 25
+mul y x
+add y 1
+mul z y
+mul y 0
+add y w
+add y 14
+mul y x
+add z y # 26^2 (w1 + 4) + 26 (w2 + 16) + (w3 + 14)
+
+inp w
+mul x 0 # x = 0
+add x z # 
+mod x 26 # (w3 + 14)
+div z 26 # z = 26 * (w1 + 4) + (w2 + 16)  
+add x -13 # w3 + 1
+eql x w # 1 if w4 == w3 + 1
+eql x 0 # flip x
+mul y 0 # y = 0
+add y 25 
+mul y x #  
+add y 1 # if w4 != w3 + 1, y = 26; else, y = 1
+mul z y # if w4 != w3 + 1, z = 26^2 (w1 + 4) + 26(w2 + 16), else, z = 26(w1 + 4) + (w2 + 16)
+mul y 0
+add y w
+add y 3 # y = w4 + 3
+mul y x # if w4 != w3 + 1, y = w4 + 3; else, y = 0
+add z y # if w4 != w3 + 1, z = 26^2(w1 + 4) + 26(w2 + 16) + w4 + 3; else, z = 26(w1 + 4) + (w2 + 16); replace or divide by 26
+
+inp w
+mul x 0
+add x z
+mod x 26
+div z 1
+add x 14
+eql x w
+eql x 0
+mul y 0
+add y 25
+mul y x
+add y 1 # y = 26
+mul z y 
+mul y 0
+add y w
+add y 11
+mul y x
+add z y # z *= 26, z += w5 + 11;
+
+inp w
+mul x 0
+add x z
+mod x 26
+div z 1
+add x 15 # w5 + 26
+eql x w
+eql x 0 # x = 1
+mul y 0
+add y 25
+mul y x
+add y 1 # y = 26
+mul z y
+mul y 0
+add y w
+add y 13
+mul y x
+add z y # z *= 26, z += (w6 + 13)
+
+inp w
+mul x 0 
+add x z 
+mod x 26 # w6 + 13
+div z 26 # z = everything that is not w6 + 13
+add x -7 # w6 + 6
+eql x w
+eql x 0 # w7 != w6 + 6
+mul y 0
+add y 25
+mul y x
+add y 1
+mul z y
+mul y 0
+add y w
+add y 11
+mul y x
+add z y # replace (w6 + 13) with (w7 + 11), or divide by 26
+
+inp w
+mul x 0
+add x z
+mod x 26
+div z 1
+add x 10
+eql x w
+eql x 0
+mul y 0
+add y 25
+mul y x
+add y 1
+mul z y
+mul y 0
+add y w
+add y 7
+mul y x
+add z y # z *= 26; z += w8 + 7
+
+inp w
+mul x 0
+add x z
+mod x 26
+div z 26
+add x -12
+eql x w # w9 = w8 - 5
+eql x 0
+mul y 0
+add y 25
+mul y x
+add y 1
+mul z y
+mul y 0
+add y w
+add y 12
+mul y x
+add z y # 
+
+inp w
+mul x 0
+add x z
+mod x 26
+div z 1
+add x 15
+eql x w
+eql x 0
+mul y 0
+add y 25
+mul y x
+add y 1
+mul z y
+mul y 0
+add y w
+add y 15
+mul y x
+add z y # w10 + 15
+
+inp w
+mul x 0
+add x z
+mod x 26
+div z 26
+add x -16
+eql x w
+eql x 0 # w11 = w10 - 1
+mul y 0
+add y 25
+mul y x
+add y 1
+mul z y
+mul y 0
+add y w
+add y 13
+mul y x
+add z y 
+
+inp w
+mul x 0
+add x z
+mod x 26
+div z 26
+add x -9
+eql x w
+eql x 0
+mul y 0
+add y 25
+mul y x
+add y 1
+mul z y
+mul y 0
+add y w
+add y 1
+mul y x
+add z y # w12 = 
+
+inp w
+mul x 0
+add x z
+mod x 26
+div z 26
+add x -8
+eql x w
+eql x 0
+mul y 0
+add y 25
+mul y x
+add y 1
+mul z y
+mul y 0
+add y w
+add y 15
+mul y x
+add z y
+
+inp w
+mul x 0
+add x z
+mod x 26
+div z 26
+add x -8
+eql x w
+eql x 0
+mul y 0
+add y 25
+mul y x
+add y 1
+mul z y
+mul y 0
+add y w
+add y 4
+mul y x
+add z y
